@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <title>Tachyons Translate</title>
+    <meta name="description" content="A tool to translate tachyons classes to classic css, so that you can use the power of tachyons to prototype fast and then write back plain old css">
+    <meta name="keywords" content="tachyons, developers tools, translate tachyons css">
+    <meta name="topic" content="tachyons css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
+    <script src="./script.js"></script>
+    <script type="text/javascript">
+(function(e,t){var n=e.amplitude||{_q:[],_iq:{}};var r=t.createElement("script")
+  ;r.type="text/javascript"
+  ;r.integrity="sha384-3bSR/uIgD42pCWBeq1//B3mI/hPuWdk0L1EUnQIWfGyMOjs0VEoFLhHMqObtv2BA"
+  ;r.crossOrigin="anonymous";r.async=true
+  ;r.src="https://cdn.amplitude.com/libs/amplitude-5.10.0-min.gz.js"
+  ;r.onload=function(){if(!e.amplitude.runQueuedFunctions){
+    console.log("[Amplitude] Error: could not load SDK")}}
+  ;var i=t.getElementsByTagName("script")[0];i.parentNode.insertBefore(r,i)
+  ;function s(e,t){e.prototype[t]=function(){
+    this._q.push([t].concat(Array.prototype.slice.call(arguments,0)));return this}}
+  var o=function(){this._q=[];return this}
+  ;var a=["add","append","clearAll","prepend","set","setOnce","unset"]
+  ;for(var u=0;u<a.length;u++){s(o,a[u])}n.Identify=o;var c=function(){this._q=[]
+    ;return this}
+  ;var l=["setProductId","setQuantity","setPrice","setRevenueType","setEventProperties"]
+  ;for(var p=0;p<l.length;p++){s(c,l[p])}n.Revenue=c
+  ;var d=["init","logEvent","logRevenue","setUserId","setUserProperties","setOptOut","setVersionName","setDomain","setDeviceId", "enableTracking", "setGlobalUserProperties","identify","clearUserProperties","setGroup","logRevenueV2","regenerateDeviceId","groupIdentify","onInit","logEventWithTimestamp","logEventWithGroups","setSessionId","resetSessionId"]
+  ;function v(e){function t(t){e[t]=function(){
+    e._q.push([t].concat(Array.prototype.slice.call(arguments,0)))}}
+    for(var n=0;n<d.length;n++){t(d[n])}}v(n);n.getInstance=function(e){
+      e=(!e||e.length===0?"$default_instance":e).toLowerCase()
+      ;if(!n._iq.hasOwnProperty(e)){n._iq[e]={_q:[]};v(n._iq[e])}return n._iq[e]}
+  ;e.amplitude=n})(window,document);
+
+amplitude.getInstance().init("783122a760de0fda2e18e63081d3dc71");
+    </script>
+  </head>
+  <body class="w-100 vh-100 bg-white pa4 courier light-purple">
+    <div class="flex flex-column bg-washed-blue" style="height: calc(100% - 82px);">
+
+      <header class="flex items-center justify-center w-100">
+        <div class="w-50 flex flex-column items-center justify-center">
+          <img src="./tt.png" class="" />
+          <h1 class="ma0 pv1">
+            Tachyons Translate
+          </h1>
+    <blockquote>
+      <a href="https://unpkg.com/tachyons@4.10.0/css/tachyons.css" class="courier" style="color: #206BFF;">tachyons stylesheet v4.10.0</a>
+    </blockquote>
+        </div>
+        <div class="w-50">
+          <div class="flex flex-column w-100 pa4 bg-white">
+            <div class="flex justify-start items-center mb2">
+              <div class="br-100 bg-white b--light-purple w2 h2 ba flex justify-center items-center">1</div>
+              <span class="ml3 f6">Type the classes to extract their rules</span>
+            </div>
+            <div class="flex justify-start items-center mb2">
+              <div class="br-100 bg-white b--light-purple w2 h2 ba flex justify-center items-center">2</div>
+              <span class="ml3 f6">Separate the class names with one wihtespace</span>
+            </div>
+            <div class="flex justify-start items-center mb2">
+              <div class="br-100 bg-white b--light-purple w2 h2 ba flex justify-center items-center">3</div>
+              <span class="ml3 f6">See the extracted rules inside the css snippet at the right</span>
+            </div>
+            <div class="flex justify-start items-center mb2">
+              <div class="br-100 bg-white b--light-purple w2 h2 ba flex justify-center items-center">4</div>
+              <span class="ml3 f6">The new styles are automatically copied to your clipboard in background</span>
+            </div>
+          </div>
+        </div>
+      </header>
+      <main class="w-100 flex-auto">
+
+        <div class="h-100 flex justify-around items-center pa4 white" style="background-image: linear-gradient(to bottom right, #206BFF, #a463f2);">
+          <div class="h-100 w-50 flex flex-column items-center">
+            <h3 class="">Type here the class that you want to translate:</h3>
+            <div class="w-90 h-100 bg-black-90 shadow-3 br4">
+              <p class="pa3">
+              <span class="">
+                &lt;h1 class="
+              </span>
+              <input
+                class="bn h1 shadow-1 w-50"
+                type="text"
+                id="translate"
+                onkeyup="app.handleInput()"
+                />
+              <span class="">
+                "&gt;
+              </span>&#10;
+              <span class="db mv2 ph3 lh-copy">
+                Type or paste here the name of the class/es that you want to translate
+              </span>
+              <span class="">
+                &lt;/h1&gt;
+              </span>
+              </p>
+            </div>
+          </div>
+
+          <div class="h-100 w-50 flex flex-column items-center">
+            <h3 class="">Copy the new css class and paste it in your code 🚀️</h3>
+            <div class="w-90 h-100 bg-black-90 shadow-3 br4">
+              <p class="pa3" id="copy-to-clipboard">
+              <span>.tachyonsIsAwesome {</span>
+              <span id="new-rules"></span>
+              <span>}</span>
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </main>
+    </div>
+    <footer class="flex justify-between items-center bg-washed-blue pa4 bt bw4 b--white black-80">
+      <span class=""> Made for fun and profit by <a href="https://www.github.com/glippi" class="">glippi</a> - source code at xxx </span>
+      <span class="f7"> <a target="_blank" href="https://icons8.com/icons/set/google-translate">Google Translate icon</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a> </span>
+    </footer>
+  </body>
+</html>
