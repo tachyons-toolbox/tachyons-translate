@@ -1,3 +1,7 @@
+<p align="center">
+   <img src="https://github.com/tachyons-toolbox/tachyons-translate/blob/master/img/TachyonsTranslateLogo.png" height="200"/>
+</p>
+
 #  :twisted_rightwards_arrows:  Tachyons Translate
 > because tachyons is awesome, but sometimes you need to write css
 
