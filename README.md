@@ -1,4 +1,4 @@
-# Tachyons Translate
+#  :twisted_rightwards_arrows:  Tachyons Translate
 > because tachyons is awesome, but sometimes you need to write css
 
 
@@ -13,9 +13,20 @@ So for example, you just wrote this code:
 ```html
 <h1 class="blue pa3 mh2 lh-copy">A cool title styled with tachyons</h1>
 ```
+
 at some point, you realize that you want to encapsulate all these rules under
 one rule but you're too lazy to go look what are the values of these classes in
-tachyons stylesheet, but don't worry, here it comes *tachyons translate*.
+tachyons stylesheet, but don't worry, here it comes *tachyons translate*:
+
+```
+.tachyonsIsAwesome { 
+  color:#357edd;
+  padding:1rem;
+  margin-left:.5rem;
+  margin-right:.5rem;
+  line-height:1.5; 
+}
+```
 
 
 ## How to use it
