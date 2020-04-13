@@ -37,6 +37,8 @@ const app = (() => {
   }
 
   function pickStylesFrom(classnames, stylesheet) {
+    if (classnames === "") return "";
+
     const stylesMap = transformToObject(stylesheet);
     const styles = classnames.split(" ").filter(d => d !== '');
 
@@ -53,10 +55,10 @@ const app = (() => {
 
     const classesToTranslate = document.getElementById("translate").value;
     const rules = pickStylesFrom(classesToTranslate, stylesheet);
-
     rules.split("\n").map(rule => {
       return document.getElementById("new-rules").innerHTML += `<span class="db mv2 ph3">${rule.replace(/"/g, "")}</span>`;
     });
+
     copyToClipboard(`.tachyonsIsAwesome {
     ${rules}
     }`)
