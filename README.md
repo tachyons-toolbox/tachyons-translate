@@ -20,7 +20,7 @@ So for example, you just wrote this code:
 
 at some point, you realize that you want to encapsulate all these rules under
 one rule but you're too lazy to go look what are the values of these classes in
-tachyons stylesheet, but don't worry, here it comes *tachyons translate*:
+tachyons stylesheet, but don't worry, here it comes [tachyons translate](http://tachyonstranslate.xyz/):
 
 ```
 .tachyonsIsAwesome { 
