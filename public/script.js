@@ -11,21 +11,15 @@ const app = (() => {
   }
 
   function transformToObject(stylesheet) {
-    const parsedStyles = stylesheet
-      .replace(/\/\*!.*\*\//g, "")
-      .replace(/}/g, `}\n`)
-      .replace(/\.(.*{)/g, '"$1')
-      .replace(/({)(.*)(})/g, '": "$2;",')
-      .replace(/^(?!\").*\",*/gm, "")
-      .replace(/"cf:after,.cf:before": "content:" ";display:table;",/, "")
-      .replace(/.*content:"".*,/, "")
-      .replace(/{/g, "")
-      .replace(/}/g, "")
-      .replace(/^\s*\n/gm, "")
-      .replace(/^\"/,"{\"")
-      .replace(/("v-btm-l": "vertical-align:bottom;"),/, "$1}");
+    const a = removeComments(stylesheet)
+    const b = splitOnNewLine(a)
+    const c = removeIfNotACssClass(b)
+    const d = handleRulesWithCommas(c)
+    const f = transformToJsObject(d)
+    console.log({ f })
 
-    return JSON.parse(parsedStyles);
+
+    //return JSON.parse(f);
   }
 
   function checkValidityOf(expectedClassName, actualClassName) {
@@ -69,6 +63,47 @@ const app = (() => {
   }
 
   loadTachyonsStylesheet()
+
+function removeComments(stylesheet) {
+  return stylesheet.replace(/\/\*!.*\*\//g, "").trim();
+}
+
+function splitOnNewLine(stylesheet) {
+  return stylesheet.replace(/}/g, `}\n`).split("\n")
+}
+
+function removeIfNotACssClass(maybeClassArray) {
+  return maybeClassArray.filter(maybeClass => maybeClass.indexOf(".") !== -1)
+}
+
+function handleRulesWithCommas(rules) {
+  return rules.reduce((acc, selector, idx) => {
+    const selectors = selector.replace(/(.*)({.*})/, "$1")
+
+    if (selectors.search(",") === -1) {
+      return acc + selector
+    }
+    else {
+      const rule = selector.replace(/(.*)({.*})/, "$2")
+      const splittedSelectors = selectors.split(",")
+      return acc + splittedSelectors.map(s => `${s}${rule}`)
+    }
+  }, "")
+}
+
+function transformToJsObject(cssRule) {
+  const cssToObj = cssRule
+    .replace(/,/g, ``) // remove commas
+    //.replace(/}/g, `}\n`) // add newline
+    //.replace(/\.(.*{)/g, '"$1') // remove point
+    //.replace(/({)(.*)(})/g, '": "$2;",') // add semicolon with value and comma
+    //.replace(/^\"/g,"{\"") // add opening {
+    //.replace(/\n/gm, "") // remove newline
+    //.replace(/,$/, "}"); // add closing }
+  console.log({ cssToObj })
+
+    //return JSON.parse(cssToObj)
+}
 
   return {
     handleInput,

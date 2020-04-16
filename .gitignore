@@ -1,6 +1,2 @@
 node_modules/
-src/
-test/
 .cache/
-package.json
-package-lock.json
