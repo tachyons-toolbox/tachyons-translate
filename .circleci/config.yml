@@ -10,12 +10,15 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
             - v1-dependencies-
-      - run: npm install
+      - run:
+          command: 'npm install'
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-            - run: npm run test:once
+      - run:
+          command: 'npm run test:once'
+
   build_and_deploy:
     docker:
       - image: circleci/node:10.16.0
@@ -26,7 +29,8 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
             - v1-dependencies-
-      - run: CI="" && npm run build
+      - run:
+          command: 'CI="" && npm run build'
       - save_cache:
           paths:
             - node_modules
@@ -34,6 +38,7 @@ jobs:
       - run: sh deploy.sh
 
 workflows:
+  version: 2
   build-test-and-deploy:
     jobs:
       - test
