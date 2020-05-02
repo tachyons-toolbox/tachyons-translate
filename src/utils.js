@@ -6,34 +6,55 @@ export function splitOnNewLine(stylesheet) {
   return stylesheet.replace(/}/g, `}\n`).split("\n")
 }
 
-export function removeIfNotACssClass(maybeClassArray) {
-  return maybeClassArray.filter(maybeClass => maybeClass.indexOf(".") !== -1)
-}
+export function transformStylesheetToMap(rules) {
 
-export function handleRulesWithCommas(rules) {
-  return rules.reduce((acc, selector, idx) => {
-    const selectors = selector.replace(/(.*)({.*})/, "$1")
+  return rules.reduce((acc, rule) => {
+    const selectors = rule.replace(/(.*)({.*})/, "$1");
+    const declarations =  rule.replace(/(.*)({.*})/, "$2");
+    const isCssClass = selectors.indexOf(".") !== -1;
+    const isJustOneClass = selectors.search(",") === -1;
 
-    if (selectors.search(",") === -1) {
-      return acc + selector
+    // ".b-white{border-color: white})}
+    if (isJustOneClass && isCssClass) {
+      return {
+        ...acc,
+        [selectors.replace(/(\.)(.*)/, '$2')]: declarations.replace(/({)(.*)(})/, '$2'),
+      }
     }
     else {
-      const rule = selector.replace(/(.*)({.*})/, "$2")
+      const declaration = rule.replace(/(.*)({.*})/, "$2")
       const splittedSelectors = selectors.split(",")
-      return acc + splittedSelectors.map(s => `${s}${rule}`)
+      // .border-box
+      const onlyClass = splittedSelectors.filter(s => s.indexOf(".") !== -1)
+      const parsedRule = onlyClass.reduce((accu, s) => {
+        const o = Object.assign({}, {[s.replace(/(\.)(.*)/, '$2')]: declaration.replace(/({)(.*)(})/, '$2')});
+        return {
+          ...accu,
+          ...o
+        }
+      }, {})
+      return { ...acc, ...parsedRule }
     }
-  }, "")
+  }, {})
 }
 
-export function transformToJsObject(cssRule) {
-  const cssToObj = cssRule
-    .replace(/,/g, ``) // remove commas
-    .replace(/}/g, `}\n`) // add newline
-    .replace(/\.(.*{)/g, '"$1') // remove point
-    .replace(/({)(.*)(})/g, '": "$2;",') // add semicolon with value and comma
-    .replace(/^\"/g,"{\"") // add opening {
-    .replace(/\n/gm, "") // remove newline
-    .replace(/,$/, "}"); // add closing }
+function checkValidityOf(expectedClassName, actualClassName) {
+  if (typeof expectedClassName === 'undefined') {
+    return `The class ${actualClassName} doesn't exist in Tachyons stylesheet`;
+  } else {
+    return expectedClassName;
+  };
+}
 
-  return JSON.parse(cssToObj)
+export function pickStylesFrom(classes, mapOfClasses) {
+  if (classes === "") return "";
+  const styles = classes.split(" ").filter(d => d !== '');
+
+  if (styles.length > 1) {
+    return styles.reduce((acc, style, idx) => {
+      return `${acc}${checkValidityOf(mapOfClasses[style], style)}${idx === styles.length - 1 ? '' : '\n'}`;
+    }, ``);
+  }
+
+  return checkValidityOf(mapOfClasses[styles]);
 }
