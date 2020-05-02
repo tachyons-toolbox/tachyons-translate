@@ -6,7 +6,7 @@
     "test:once": "jest",
     "test:watch": "jest --watchAll",
     "build": "webpack",
-    "start": "webpack-dev-server --plugin common-config-webpack-plugin --plugin html-webpack-plugin"
+    "watch": "webpack --watch"
   },
   "babel": {
     "presets": [
