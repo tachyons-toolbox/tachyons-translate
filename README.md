@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/tachyons-toolbox/tachyons-translate.svg?style=svg)](https://circleci.com/gh/tachyons-toolbox/tachyons-translate)
+
 <p align="center">
    <img src="https://github.com/tachyons-toolbox/tachyons-translate/blob/master/img/TachyonsTranslateLogo.png" height="200"/>
 </p>
