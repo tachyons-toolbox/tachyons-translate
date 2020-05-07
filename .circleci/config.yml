@@ -1,6 +1,10 @@
 version: 2
 jobs:
   test:
+    filters:
+      branches:
+        only:
+          - master
     docker:
       - image: circleci/node:10.16.0
     working_directory: ~/repo
@@ -20,6 +24,10 @@ jobs:
           command: 'npm run test:once'
 
   build_and_deploy:
+    filters:
+      branches:
+        only:
+          - master
     docker:
       - image: circleci/node:10.16.0
     working_directory: ~/repo
@@ -45,6 +53,3 @@ workflows:
       - build_and_deploy:
           requires:
             - test
-          filters:
-            branches:
-              only: master
