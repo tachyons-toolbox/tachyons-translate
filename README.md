@@ -42,13 +42,5 @@ you want to translate and the name of the new css class that you want to
 extract, and that's all.
 You can already paste the new style in your code.
 
-
-## How it works
-
-At the moment, we are using a heavy combination of regex to extract and parse
-all the information needed, it's probably not the best way to go, and it could
-fail in some cases; if you have some improvements a PR is always welcomed ;)
-
-
 ## License
 MIT
