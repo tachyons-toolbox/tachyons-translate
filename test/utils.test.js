@@ -30,7 +30,7 @@ describe('transformStylesheetToMap should', () => {
     ];
 
     const actual = transformStylesheetToMap(example);
-    const expected = {"border-box": "box-sizing:border-box","ma1": "margin: .5rem","button-reset::-moz-focus-inner": "border:0;padding:0","input-reset::-moz-focus-inner": "border:0;padding:0","aspect-ratio": "height:0;position:relative"};
+    const expected = {"border-box": "box-sizing:border-box;","ma1": "margin: .5rem;","button-reset::-moz-focus-inner": "border:0;padding:0;","input-reset::-moz-focus-inner": "border:0;padding:0;","aspect-ratio": "height:0;position:relative;"};
 
     expect(actual).toMatchObject(expected);
   }); 
@@ -46,7 +46,7 @@ describe('pickStylesFrom should', () => {
 
     const actual = pickStylesFrom(classes, mapOfClasses);
 
-    expect(actual).toEqual(`border-style:solid;border-width:1px\nposition:absolute`);
+    expect(actual).toEqual(`border-style:solid;border-width:1px;\nposition:absolute;`);
   });
 
   test('return a string with the value of the class', () => {
@@ -54,7 +54,7 @@ describe('pickStylesFrom should', () => {
 
     const actual = pickStylesFrom(classes, mapOfClasses);
 
-    expect(actual).toEqual(`display:flex`);
+    expect(actual).toEqual(`display:flex;`);
   }); 
 
   test('return an empty string', () => {
@@ -70,7 +70,7 @@ describe('pickStylesFrom should', () => {
 
     const actual = pickStylesFrom(classes, mapOfClasses);
 
-    expect(actual).toEqual(`display:flex\nThe class asadf doesn't exist in Tachyons stylesheet\nborder-style:solid;border-width:1px`);
+    expect(actual).toEqual(`display:flex;\nThe class asadf doesn't exist in Tachyons stylesheet\nborder-style:solid;border-width:1px;`);
   }); 
 });
 

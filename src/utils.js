@@ -11,23 +11,22 @@ export function transformStylesheetToMap(rules) {
   return rules.reduce((acc, rule) => {
     const selectors = rule.replace(/(.*)({.*})/, "$1");
     const declarations =  rule.replace(/(.*)({.*})/, "$2");
-    const isCssClass = selectors.indexOf(".") !== -1;
     const isJustOneClass = selectors.search(",") === -1;
+    const isCssClass = selectors => selectors.indexOf(".") !== -1;
 
     // ".b-white{border-color: white})}
-    if (isJustOneClass && isCssClass) {
+    if (isJustOneClass && isCssClass(selectors)) {
       return {
         ...acc,
-        [selectors.replace(/(\.)(.*)/, '$2')]: declarations.replace(/({)(.*)(})/, '$2'),
+        [removeDotFrom(selectors)]: removeBracketsFrom(declarations),
       }
     }
     else {
-      const declaration = rule.replace(/(.*)({.*})/, "$2")
       const splittedSelectors = selectors.split(",")
       // .border-box
-      const onlyClass = splittedSelectors.filter(s => s.indexOf(".") !== -1)
-      const parsedRule = onlyClass.reduce((accu, s) => {
-        const o = Object.assign({}, {[s.replace(/(\.)(.*)/, '$2')]: declaration.replace(/({)(.*)(})/, '$2')});
+      const cssClasses = splittedSelectors.filter(s => isCssClass(s));
+      const parsedRule = cssClasses.reduce((accu, s) => {
+        const o = Object.assign({}, {[removeDotFrom(s)]: removeBracketsFrom(declarations)});
         return {
           ...accu,
           ...o
@@ -58,3 +57,11 @@ export function pickStylesFrom(classes, mapOfClasses) {
 
   return checkValidityOf(mapOfClasses[styles]);
 }
+
+function removeDotFrom(selector) {
+  return selector.replace('.', "");
+} 
+
+function removeBracketsFrom(declaration) {
+  return declaration.replace(/({)(.*)(})/, '$2;');
+} 
