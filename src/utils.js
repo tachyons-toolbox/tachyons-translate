@@ -1,12 +1,12 @@
-export function removeComments(stylesheet) {
+function removeComments(stylesheet) {
   return stylesheet.replace(/\/\*!.*\*\//g, "").trim();
 }
 
-export function splitOnNewLine(stylesheet) {
-  return stylesheet.replace(/}/g, `}\n`).split("\n")
+function splitOnNewLine(stylesheet) {
+  return stylesheet.replace(/}/g, `}\n`).split("\n");
 }
 
-export function transformStylesheetToMap(rules) {
+function transformStylesheetToMap(rules) {
 
   return rules.reduce((acc, rule) => {
     const selectors = rule.replace(/(.*)({.*})/, "$1");
@@ -22,30 +22,30 @@ export function transformStylesheetToMap(rules) {
       }
     }
     else {
-      const splittedSelectors = selectors.split(",")
+      const splittedSelectors = selectors.split(",");
       // .border-box
       const cssClasses = splittedSelectors.filter(s => isCssClass(s));
       const parsedRule = cssClasses.reduce((accu, s) => {
         const o = Object.assign({}, {[removeDotFrom(s)]: removeBracketsFrom(declarations)});
         return {
           ...accu,
-          ...o
-        }
-      }, {})
-      return { ...acc, ...parsedRule }
+          ...o,
+        };
+      }, {});
+      return { ...acc, ...parsedRule };
     }
-  }, {})
+  }, {});
 }
 
 function checkValidityOf(expectedClassName, actualClassName) {
   if (typeof expectedClassName === 'undefined') {
     return `The class ${actualClassName} doesn't exist in Tachyons stylesheet`;
-  } else {
-    return expectedClassName;
-  };
+  }
+
+  return expectedClassName;
 }
 
-export function pickStylesFrom(classes, mapOfClasses) {
+function pickStylesFrom(classes, mapOfClasses) {
   if (classes === "") return "";
   const styles = classes.split(" ").filter(d => d !== '');
 
@@ -60,8 +60,15 @@ export function pickStylesFrom(classes, mapOfClasses) {
 
 function removeDotFrom(selector) {
   return selector.replace('.', "");
-} 
+}
 
 function removeBracketsFrom(declaration) {
   return declaration.replace(/({)(.*)(})/, '$2;');
-} 
+}
+
+module.exports = {
+ removeComments,
+ pickStylesFrom,
+ splitOnNewLine,
+ transformStylesheetToMap
+}

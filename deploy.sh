@@ -7,7 +7,7 @@ git checkout -b gh-pages HEAD
 # run production build on gh-pages branch
 npm run build
 # delete all files except from build folder
-sudo rm -rf webpack.config.js package.json package-lock.json deploy.sh .gitignore .cache/ .circleci/  src/ test/ img/TachyonsTranslateLogo.png node_modules/
+sudo rm -rf package.json package-lock.json deploy.sh .gitignore .cache/ .circleci/ src/ test/ img/TachyonsTranslateLogo.png node_modules/
 # setup git username and email
 git config --global user.name "glippi"
 git config --global user.email "gabriele@lippi.net"

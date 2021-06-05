@@ -1,5 +1,5 @@
-import { removeComments, splitOnNewLine, transformStylesheetToMap, pickStylesFrom } from '../src/utils.js'
-import { minCss, minCssWithoutComment } from './fixtures'
+const { removeComments, splitOnNewLine, transformStylesheetToMap, pickStylesFrom } = require('../src/utils.js');
+const { minCss, minCssWithoutComment } = require('./fixtures');
 
 describe('removeComments should', () => {
   test('remove all comments from css file', () => {
@@ -33,8 +33,8 @@ describe('transformStylesheetToMap should', () => {
     const expected = {"border-box": "box-sizing:border-box;","ma1": "margin: .5rem;","button-reset::-moz-focus-inner": "border:0;padding:0;","input-reset::-moz-focus-inner": "border:0;padding:0;","aspect-ratio": "height:0;position:relative;"};
 
     expect(actual).toMatchObject(expected);
-  }); 
-}); 
+  });
+});
 
 describe('pickStylesFrom should', () => {
   let mapOfClasses;
@@ -55,7 +55,7 @@ describe('pickStylesFrom should', () => {
     const actual = pickStylesFrom(classes, mapOfClasses);
 
     expect(actual).toEqual(`display:flex;`);
-  }); 
+  });
 
   test('return an empty string', () => {
     const classes = ""
@@ -63,7 +63,7 @@ describe('pickStylesFrom should', () => {
     const actual = pickStylesFrom(classes, mapOfClasses);
 
     expect(actual).toEqual(``);
-  }); 
+  });
 
   test('print a message if the provided class does not exist', () => {
     const classes = "flex asadf ba"
@@ -71,7 +71,7 @@ describe('pickStylesFrom should', () => {
     const actual = pickStylesFrom(classes, mapOfClasses);
 
     expect(actual).toEqual(`display:flex;\nThe class asadf doesn't exist in Tachyons stylesheet\nborder-style:solid;border-width:1px;`);
-  }); 
+  });
 });
 
 

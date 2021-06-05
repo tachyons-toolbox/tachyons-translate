@@ -3,7 +3,7 @@ import { removeComments, splitOnNewLine, transformStylesheetToMap , pickStylesFr
 window.addEventListener('load', function() {
   let stylesheet = "";
 
-  function loadTachyonsStylesheet() {    
+  function loadTachyonsStylesheet() {
     fetch("https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css")
       .then(r => r.text())
       .then(tachyonsStyles => {
@@ -30,5 +30,5 @@ window.addEventListener('load', function() {
     copyToClipboard(`.tachyonsIsAwesome {
     ${rules}
     }`);
-  }); 
+  });
 })

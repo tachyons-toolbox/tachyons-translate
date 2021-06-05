@@ -1,35 +1,14 @@
 {
-  "name": "test",
-  "description": "Kata bootstrapped with kataclism",
-  "private": true,
+  "version": "1.0.0",
   "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
     "test:once": "jest",
-    "test:watch": "jest --watchAll",
-    "build": "webpack",
-    "watch": "webpack --watch"
-  },
-  "babel": {
-    "presets": [
-      "@babel/preset-env"
-    ],
-    "plugins": [
-      "@babel/plugin-proposal-class-properties"
-    ]
-  },
-  "prettier": {
-    "trailingComma": "es5",
-    "semi": true,
-    "singleQuote": true
+    "test:watch": "jest --watchAll"
   },
   "devDependencies": {
-    "@babel/core": "^7.1.6",
-    "@babel/plugin-proposal-class-properties": "^7.1.0",
-    "@babel/preset-env": "^7.9.5",
-    "babel-core": "^7.0.0-bridge.0",
-    "babel-jest": "^23.6.0",
     "jest": "^23.6.0",
-    "prettier": "^1.15.2",
-    "webpack": "^4.42.1",
-    "webpack-cli": "^3.3.11"
+    "vite": "^2.3.5"
   }
 }
