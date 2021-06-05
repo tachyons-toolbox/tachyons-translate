@@ -8,7 +8,7 @@
     "test:watch": "jest --watchAll"
   },
   "devDependencies": {
-    "jest": "^23.6.0",
+    "jest": "^27.0.4",
     "vite": "^2.3.5"
   }
 }
