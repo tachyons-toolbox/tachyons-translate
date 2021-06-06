@@ -7,9 +7,11 @@ git checkout -b gh-pages HEAD
 # run production build on gh-pages branch
 npm run build
 # delete all files except from build folder
-sudo rm -rf package.json package-lock.json deploy.sh .gitignore .cache/ .circleci/ src/ test/ img/TachyonsTranslateLogo.png node_modules/
-# rename build file
-mv dist/assets/*.js dist/assets/main.js
+sudo rm -rf package.json package-lock.json deploy.sh .gitignore .cache/ .circleci/ src/ test/ img/TachyonsTranslateLogo.png node_modules/ README.md index.html
+mv dist/index.html ../
+mkdir assets
+mv dist/assets/* assets/
+rm -rf dist
 # setup git username and email
 git config --global user.name "glippi"
 git config --global user.email "gabriele@lippi.net"
