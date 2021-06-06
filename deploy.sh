@@ -8,7 +8,7 @@ git checkout -b gh-pages HEAD
 npm run build
 # delete all files except from build folder
 sudo rm -rf package.json package-lock.json deploy.sh .gitignore .cache/ .circleci/ src/ test/ img/TachyonsTranslateLogo.png node_modules/ README.md index.html
-mv dist/index.html ../
+mv dist/index.html ./
 mkdir assets
 mv dist/assets/* assets/
 rm -rf dist
