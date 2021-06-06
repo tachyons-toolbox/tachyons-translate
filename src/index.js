@@ -1,4 +1,4 @@
-import { removeComments, splitOnNewLine, transformStylesheetToMap , pickStylesFrom } from './utils'
+const { removeComments, splitOnNewLine, transformStylesheetToMap , pickStylesFrom } = require('./utils');
 
 window.addEventListener('load', function() {
   let stylesheet = "";

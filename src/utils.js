@@ -70,5 +70,5 @@ module.exports = {
  removeComments,
  pickStylesFrom,
  splitOnNewLine,
- transformStylesheetToMap
+ transformStylesheetToMap,
 }
