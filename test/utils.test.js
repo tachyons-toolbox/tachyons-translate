@@ -1,5 +1,5 @@
-const { removeComments, splitOnNewLine, transformStylesheetToMap, pickStylesFrom } = require('../src/utils.js');
-const { minCss, minCssWithoutComment } = require('./fixtures');
+import { removeComments, splitOnNewLine, transformStylesheetToMap, pickStylesFrom } from '../src/utils.js';
+import { minCss, minCssWithoutComment } from './fixtures';
 
 describe('removeComments should', () => {
   test('remove all comments from css file', () => {

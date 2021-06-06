@@ -1,12 +1,12 @@
-function removeComments(stylesheet) {
+export function removeComments(stylesheet) {
   return stylesheet.replace(/\/\*!.*\*\//g, "").trim();
 }
 
-function splitOnNewLine(stylesheet) {
+export function splitOnNewLine(stylesheet) {
   return stylesheet.replace(/}/g, `}\n`).split("\n");
 }
 
-function transformStylesheetToMap(rules) {
+export function transformStylesheetToMap(rules) {
 
   return rules.reduce((acc, rule) => {
     const selectors = rule.replace(/(.*)({.*})/, "$1");
@@ -45,7 +45,7 @@ function checkValidityOf(expectedClassName, actualClassName) {
   return expectedClassName;
 }
 
-function pickStylesFrom(classes, mapOfClasses) {
+export function pickStylesFrom(classes, mapOfClasses) {
   if (classes === "") return "";
   const styles = classes.split(" ").filter(d => d !== '');
 
@@ -64,11 +64,4 @@ function removeDotFrom(selector) {
 
 function removeBracketsFrom(declaration) {
   return declaration.replace(/({)(.*)(})/, '$2;');
-}
-
-module.exports = {
- removeComments,
- pickStylesFrom,
- splitOnNewLine,
- transformStylesheetToMap,
 }
