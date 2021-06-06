@@ -26,9 +26,7 @@ jobs:
     steps:
       - checkout
       - run:
-          command: 'npm install'
-      - run:
-          command: 'CI="" && npm run build'
+          command: 'npm install && CI="" && npm run build'
       - run: sh deploy.sh
 
 workflows:
